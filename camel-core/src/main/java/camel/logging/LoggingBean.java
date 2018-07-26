@@ -1,6 +1,6 @@
 package camel.logging;
 
-import camel.transform.XmlFormatter;
+import camel.transform.xml.XmlFormatter;
 import org.apache.camel.Body;
 import org.apache.camel.Exchange;
 import org.apache.camel.Header;

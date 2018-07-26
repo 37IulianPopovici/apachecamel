@@ -1,4 +1,4 @@
-package camel.transform;
+package camel.transform.xml;
 
 import camel.logging.LoggingBean;
 import org.apache.camel.Exchange;
@@ -16,6 +16,7 @@ public class ObjectsToXmlRoute extends RouteBuilder {
             .split(body(), new StringAggregator())
                 .parallelProcessing().streaming()
                 .bean(new XmlTransformer())
+                .bean(new XmlExtractor())
                 .bean(new LoggingBean(), "logBodyXml")
             .end();
     }
@@ -27,8 +28,10 @@ public class ObjectsToXmlRoute extends RouteBuilder {
             if (Objects.isNull(oldExchange)){
                 return newExchange;
             }
-            String newBody = oldExchange.getIn().getBody().toString() + newExchange.getIn().getBody().toString();
-            newExchange.getIn().setBody(newBody);
+            String newBody = newExchange.getIn().getBody().toString();
+            newBody = newBody.replaceAll("<\\?xml version=.*?>", "");
+            String outBody = oldExchange.getIn().getBody().toString() + "\n" + newBody;
+            newExchange.getIn().setBody(outBody);
             return newExchange;
         }
     }

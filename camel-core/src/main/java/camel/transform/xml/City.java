@@ -1,4 +1,4 @@
-package camel.transform;
+package camel.transform.xml;
 
 import lombok.*;
 

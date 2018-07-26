@@ -1,4 +1,4 @@
-package camel.transform;
+package camel.transform.xml;
 
 import org.apache.camel.Body;
 import org.apache.camel.Exchange;
@@ -13,11 +13,11 @@ import java.io.ByteArrayOutputStream;
 public class XmlTransformer {
 
     @Handler
-    public void transform(@Body City city, Exchange exchange) throws JAXBException {
+    public void transform(@Body City city, Message message) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(City.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         ByteArrayOutputStream stringBytes = new ByteArrayOutputStream();
         marshaller.marshal(city, stringBytes);
-        exchange.getIn().setBody(new String(stringBytes.toByteArray()));
+        message.setBody(new String(stringBytes.toByteArray()));
     }
 }

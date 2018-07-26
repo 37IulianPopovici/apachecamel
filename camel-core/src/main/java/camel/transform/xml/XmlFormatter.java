@@ -1,4 +1,4 @@
-package camel.transform;
+package camel.transform.xml;
 
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;

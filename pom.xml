@@ -54,6 +54,12 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-velocity -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-velocity</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
