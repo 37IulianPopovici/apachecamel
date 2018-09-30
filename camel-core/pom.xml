@@ -22,11 +22,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>adam.tutorial.camel</groupId>
-            <artifactId>resources</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-quartz2</artifactId>
         </dependency>

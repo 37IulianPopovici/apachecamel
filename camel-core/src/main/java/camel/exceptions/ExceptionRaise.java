@@ -3,8 +3,6 @@ package camel.exceptions;
 import org.apache.camel.Exchange;
 import org.apache.camel.Handler;
 
-import java.util.Objects;
-
 public class ExceptionRaise {
 
     private static int counter = 0;

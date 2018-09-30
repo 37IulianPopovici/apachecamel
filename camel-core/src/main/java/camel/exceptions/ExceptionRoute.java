@@ -1,17 +1,11 @@
 package camel.exceptions;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
-import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
-
-import java.util.Objects;
 
 public class ExceptionRoute extends RouteBuilder {
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         from("direct:start")
             .errorHandler(deadLetterChannel("direct:dlq")
                 .redeliveryDelay(2000)

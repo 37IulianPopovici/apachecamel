@@ -1,7 +1,6 @@
 package camel.transform.xml;
 
 import org.apache.camel.Body;
-import org.apache.camel.Exchange;
 import org.apache.camel.Handler;
 import org.apache.camel.Message;
 
