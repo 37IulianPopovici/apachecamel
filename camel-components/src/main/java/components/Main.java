@@ -1,7 +1,7 @@
 package components;
 
 
-import components.files.FileRouteBuilder;
+import components.netty.NettyRouteBuilder;
 
 /**
  * @author Adam Ostrozlik
@@ -12,8 +12,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         org.apache.camel.main.Main main = new org.apache.camel.main.Main();
 
-        main.addRouteBuilder(new FileRouteBuilder());
         main.setPropertyPlaceholderLocations("test.properties");
+
+        //main.addRouteBuilder(new FileRouteBuilder());
+        main.addRouteBuilder(new NettyRouteBuilder());
 
         main.run();
     }
