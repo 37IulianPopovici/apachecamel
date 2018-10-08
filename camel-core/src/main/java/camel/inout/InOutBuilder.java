@@ -6,12 +6,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class InOutBuilder extends RouteBuilder {
     @Override
-    public void configure() throws Exception {
-        from("direct:test")
-            .transform(simple("${body} World"))
-            .inOnly("seda:log");
+    public void configure() {
+        from("seda:test?concurrentConsumers=10")
+                .inOut("direct:first")
+                .setBody(simple("${body} again"));
 
-        from("seda:log")
-            .log("Message logged: ${body}");
+        from("direct:first")
+                .inOut("direct:second");
+
+        from("direct:second")
+                .inOut("direct:third");
+
+        from("direct:third")
+                .log(">>>>>>> Message received")
+                .transform(simple("${body} World"));
     }
 }

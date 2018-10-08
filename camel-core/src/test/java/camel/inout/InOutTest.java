@@ -7,14 +7,17 @@ import org.junit.Test;
 public class InOutTest extends CamelTestSupport {
 
     @Override
-    protected RoutesBuilder createRouteBuilder() throws Exception {
+    protected RoutesBuilder createRouteBuilder() {
         return new InOutBuilder();
     }
 
     @Test
     public void TestOutMessage() {
-        Object body = template.requestBody("direct:test", "Hello");
+        Object body = null;
+        for (int i = 0; i < 1000; i++) {
+            body = template.requestBody("seda:test", "Hello");
+        }
         System.out.println(body);
-        assertEquals(body, "Hello World");
+        assertEquals(body, "Hello World again");
     }
 }
