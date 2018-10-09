@@ -1,6 +1,5 @@
-package aggregate_split;
+package camel.aggregate_split;
 
-import camel.aggregate_split.AggregationSplitRouteBuilder;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -53,7 +52,7 @@ public class AggregateSplitTest extends CamelTestSupport {
     }
 
     @Override
-    protected RoutesBuilder createRouteBuilder() throws Exception {
+    protected RoutesBuilder createRouteBuilder() {
         return new AggregationSplitRouteBuilder();
     }
 }

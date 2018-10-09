@@ -1,13 +1,11 @@
-package routingslip;
+package camel.routingslip;
 
-import camel.routingslip.RoutingSlipRouteBuilder;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +28,7 @@ public class RoutingSlipTest extends CamelTestSupport {
         mock3.expectedBodiesReceived("Hello World again again");
 
         Map<String,Object> headers = new HashMap<>();
-        headers.put("routingslip", "direct:a,direct:b,direct:c");
+        headers.put("camel/routingslip", "direct:a,direct:b,direct:c");
 
         template.sendBodyAndHeaders("seda:input", "Hello World", headers);
 
@@ -38,24 +36,24 @@ public class RoutingSlipTest extends CamelTestSupport {
     }
 
     @Override
-    protected RoutesBuilder[] createRouteBuilders() throws Exception {
+    protected RoutesBuilder[] createRouteBuilders() {
         return new RoutesBuilder[] {
                 new RoutingSlipRouteBuilder(),
                 new RouteBuilder() {
                     @Override
-                    public void configure() throws Exception {
+                    public void configure() {
                         from("direct:a").setBody(simple("${body}")).to("mock:a");
                     }
                 },
                 new RouteBuilder() {
                     @Override
-                    public void configure() throws Exception {
+                    public void configure() {
                         from("direct:b").setBody(simple("${body} again")).to("mock:b");
                     }
                 },
                 new RouteBuilder() {
                     @Override
-                    public void configure() throws Exception {
+                    public void configure() {
                         from("direct:c").setBody(simple("${body} again")).to("mock:c");
                     }
                 }

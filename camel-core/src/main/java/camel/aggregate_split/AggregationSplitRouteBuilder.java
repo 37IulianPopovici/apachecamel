@@ -18,8 +18,8 @@ public class AggregationSplitRouteBuilder extends RouteBuilder {
     private static final Logger logger = LoggerFactory.getLogger(AggregationSplitRouteBuilder.class);
 
     @Override
-    public void configure() throws Exception {
-        // aggregate_split requires keeping messages in memory so to persist that behavior, use repository as follows:
+    public void configure() {
+        // camel.aggregate_split requires keeping messages in memory so to persist that behavior, use repository as follows:
         HawtDBAggregationRepository myRepo = new HawtDBAggregationRepository("myrepo", "target/myrepo");
         myRepo.setUseRecovery(true);
         myRepo.setMaximumRedeliveries(5);

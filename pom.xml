@@ -19,6 +19,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <lombok.version>1.18.0</lombok.version>
         <log4j-slf4j.version>1.7.25</log4j-slf4j.version>
+        <activemq.version>5.15.6</activemq.version>
     </properties>
 
     <parent>
@@ -27,6 +28,14 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.3.RELEASE</version>
     </parent>
+
+    <repositories>
+        <repository>
+            <id>repository.jboss.org-public</id>
+            <name>JBoss.org Maven repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -85,6 +94,24 @@
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-hawtdb</artifactId>
                 <version>${camel.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-jms -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jms</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-camel -->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-camel</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-broker -->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-broker</artifactId>
+                <version>${activemq.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
